@@ -1,127 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taixu Corpus Analysis Project</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #faf0e6; /* Linen background */
-            color: #4b2e2a; /* Deep brown text */
-            margin: 0;
-            /*padding: 0;*/
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        h1 {
-            color: #5a3a31; /* Dark brown for the header */
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #8b4513; /* Saddle brown */
-            margin-top: 20px;
-            text-align: center;
-        }
-        p {
-            color: #4b2e2a; /* Deep brown text */
-            max-width: 800px;
-            text-align: center;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 800px;
-        }
-        li {
-            margin: 10px;
-            padding: 5px;
-        }
-        a {
-            text-decoration: none;
-            color: #8b4513; /* Saddle brown text */
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            background-color: #e0b080; /* Light brown background for links */
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        a:hover {
-            background-color: #d4a76c; /* Darker brown on hover */
-            transform: scale(1.05);
-        }
-        .portrait {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .portrait img {
-            max-width: 200px;
-            border-radius: 50%;
-            border: 5px solid #d4a76c;
-        }
-        .content-section {
-            max-width: 800px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Taixu Corpus Analysis Project</title>
+  <style>
+    /* Added smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #faf0e6;
+      color: #4b2e2a;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: #faf0e6;
+      /*background: url('taixu_background.jpg') no-repeat center center/cover;*/
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      /*color: #fff;*/
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      /*background: rgba(0, 0, 0, 0.5);*/
+    }
+    header h1 {
+      font-size: 3em;
+      z-index: 1;
+    }
+    header p {
+      font-size: 1.2em;
+      max-width: 800px;
+      z-index: 1;
+    }
+    nav {
+      background-color: #4b2e2a;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 10px 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+      position: relative; /* For dropdown positioning */
+    }
+    nav ul li a {
+      color: #faf0e6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #e0b080;
+    }
+    /* Dropdown Menu Styles */
+    nav ul li .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%; /* Position below the parent li */
+      left: 0;
+      background-color: #4b2e2a;
+      padding: 10px 0;
+      list-style: none;
+      min-width: 200px;
+    }
+    nav ul li:hover .dropdown {
+      display: block;
+    }
+    nav ul li .dropdown li {
+      margin: 0;
+    }
+    nav ul li .dropdown li a {
+      display: block;
+      padding: 10px 20px;
+      color: #faf0e6;
+      text-decoration: none;
+      font-weight: normal;
+    }
+    nav ul li .dropdown li a:hover {
+      background-color: #e0b080;
+      color: #4b2e2a;
+    }
+    .content-section {
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .content-section:nth-child(even) {
+      background-color: #f4e8de;
+    }
+    .content-section h2 {
+      color: #8b4513;
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+    .content-section p {
+      max-width: 800px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+    .portrait img {
+      max-width: 80%;
+      border-radius: 50%;
+      border: 5px solid #d4a76c;
+      transition: transform 0.5s;
+      z-index: 1000;
+    }
+    .portrait img:hover {
+      transform: scale(1.1);
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      margin: 15px;
+      padding: 20px;
+      width: calc(33% - 60px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .card a {
+      text-decoration: none;
+      color: #4b2e2a;
+      display: block;
+      height: 100%;
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.5em;
+    }
+    .card p {
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+    footer {
+      background-color: #4b2e2a;
+      color: #faf0e6;
+      text-align: center;
+      padding: 20px;
+    }
+    /* Scroll Animation */
+    .hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Fade-in gradient effect */
+    .fade-overlay {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 100px;
+      pointer-events: none;
+    }
+    .fade-top {
+      top: 0;
+      background: linear-gradient(to bottom, #faf0e6, transparent);
+    }
+    .fade-bottom {
+      bottom: 0;
+      background: linear-gradient(to top, #faf0e6, transparent);
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome to the Taixu Corpus Analysis Project</h1>
-<p>Explore our analysis of the works of Buddhist monk Taixu (太虛; 1890-1947), with a focus on how he engaged with different religious and philosophical traditions.</p>
-
-<div class="portrait">
+<nav>
+  <ul>
+    <li><a href="#overview">Project Overview</a></li>
+    <li>
+      <a href="#key-findings">Key Findings</a>
+      <!-- Dropdown Menu -->
+      <ul class="dropdown">
+        <li><a href="#complete-works">Complete Works</a></li>
+        <li><a href="#biography-analysis">Biography Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#about">About This Project</a></li>
+  </ul>
+</nav>
+<header>
+  <h1>Welcome to the Taixu Corpus Analysis Project</h1>
+  <p>Explore our analysis of the works of Buddhist monk Taixu (太虛; 1890-1947), with a focus on how he engaged with different religious and philosophical traditions.</p>
+  <div class="portrait">
     <img src="taixu_portrait.jpg" alt="Portrait of Taixu">
+  </div>
+</header>
+
+<div class="content-section" id="overview">
+  <h2>Project Overview</h2>
+  <p>Our research aims to understand Taixu's approach to diverse religious and philosophical ideas, especially his treatment of Christianity within a multi-religious context. By processing over 4.88 million Chinese characters and over 169,000 sentences, we’ve structured a comprehensive analysis of his works, highlighting his cross-cultural and interfaith perspectives.</p>
 </div>
 
-<div class="content-section">
-    <h2>Project Overview</h2>
-    <p>Our research aims to understand Taixu's approach to diverse religious and philosophical ideas, especially his treatment of Christianity within a multi-religious context. By processing over 4.88 million Chinese characters and over 169,000 sentences, we’ve structured a comprehensive analysis of his works, highlighting his cross-cultural and interfaith perspectives.</p>
+<div class="content-section" id="key-findings">
+  <h2>Key Findings</h2>
+  <p>Explore our key findings below.</p>
 </div>
 
-<div class="content-section">
-    <h2>Key Findings: The Complete Works of Taixu</h2>
-    <p>We conducted keyword analysis on terms related to various religions, with a notable emphasis on Christianity. Through this, we discovered significant references to 'Christ,' 'Brahma,' and concepts from other religions, illustrating Taixu’s comparative exploration of faith. Additionally, our analysis revealed varied use of metadata, such as dates and locations, in sections referencing Christianity, Confucianism, and Hinduism.</p>
+<div class="content-section" id="complete-works">
+  <h2>Complete Works of Taixu</h2>
+  <p>We conducted keyword analysis on terms related to various religions, with a notable emphasis on Christianity. Through this, we discovered significant references to 'Christ,' 'Brahma,' and concepts from other religions, illustrating Taixu’s comparative exploration of faith. Additionally, our analysis revealed varied use of metadata, such as dates and locations, in sections referencing Christianity, Confucianism, and Hinduism.</p>
+  <div class="cards">
+    <div class="card">
+      <a href="christian_timeline.html">
+        <h3>Timeline of Activities Related to Christianity</h3>
+        <p>Explore the chronological events and writings related to Christianity in Taixu's works.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="christian_heatmap.html">
+        <h3>Heatmap of Activities Related to Christianity</h3>
+        <p>Visualize the intensity of Christian-related activities over time.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="christian_typemap.html">
+        <h3>Map of Activities Grouped by Type</h3>
+        <p>See how different types of activities relate to Christianity in Taixu's work.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="christian_yearmap.html">
+        <h3>Map of Activities Colored by Year</h3>
+        <p>Discover how Christian-related activities evolved over the years.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="full_heatmap.html">
+        <h3>Complete Heatmap of Activities</h3>
+        <p>Dive into a comprehensive heatmap of all activities.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="full_typemap.html">
+        <h3>Complete Map of Activities by Type</h3>
+        <p>Explore all activities grouped by type in Taixu's works.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="full_yearmap.html">
+        <h3>Complete Map of Activities by Year</h3>
+        <p>Analyze the temporal distribution of activities across all years.</p>
+      </a>
+    </div>
+  </div>
 </div>
 
-<ul>
-    <li><a href="christian_timeline.html">Timeline of activities related to Christianity</a></li>
-    <li><a href="christian_heatmap.html">Heatmap of activities related to Christianity</a></li>
-    <li><a href="christian_typemap.html">Map of activities related to Christianity (grouped by type of activity)</a></li>
-    <li><a href="christian_yearmap.html">Map of activities related to Christianity (colored by year)</a></li>
-    <li><a href="full_heatmap.html">Heatmap of activities (complete)</a></li>
-    <li><a href="full_typemap.html">Complete map of activities (by type)</a></li>
-    <li><a href="full_yearmap.html">Complete map of activities (by year)</a></li>
-</ul>
-
-<div class="content-section">
-    <h2>Key Findings: Taixu's Biography</h2>
-    <p>Work in progress...</p>
+<div class="content-section" id="biography-analysis">
+  <h2>Biography Analysis</h2>
+  <p>Work in progress...</p>
+  <div class="cards">
+    <!-- Cards for Biography Analysis -->
+    <div class="card">
+      <a href="bio_christian_timeline.html">
+        <h3>Referenced Christian Terms in Taixu's Biography</h3>
+        <p>Examine the mentions of Christian terms throughout his life story.</p>
+      </a>
+    </div>
+  </div>
 </div>
 
-<ul>
-    <li><a href="bio_christian_timeline.html">Referenced Christian terms in Taixus's biography</a></li>
-</ul>
-
-
-
-<div class="content-section">
-    <h2>About This Project</h2>
-    <p>Using Python scripts and visualization tools, we created multiple data visualizations, including word clouds and heatmaps. Our resources explore the geographic, thematic, and temporal dimensions of Taixu’s thoughts, offering insights into how he synthesized traditional Chinese Buddhism with foreign ideologies.</p>
-    <p>Explore the links above for interactive maps and charts, or check out our readme for a deeper dive into our methods.</p>
+<div class="content-section" id="about">
+  <h2>About This Project</h2>
+  <p>Using Python scripts and visualization tools, we created multiple data visualizations, including word clouds and heatmaps. Our resources explore the geographic, thematic, and temporal dimensions of Taixu’s thoughts, offering insights into how he synthesized traditional Chinese Buddhism with foreign ideologies.</p>
+  <p>Explore the links above for interactive maps and charts, or check out our readme for a deeper dive into our methods.</p>
+  <div class="cards">
+    <div class="card">
+      <a href="LICENSE">
+        <h3>License</h3>
+        <p>Review the licensing information for this project.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="README.md">
+        <h3>README</h3>
+        <p>Learn more about our methods and how to contribute.</p>
+      </a>
+    </div>
+  </div>
 </div>
-<ul>
-    <li><a href="LICENSE">License</a></li>
-    <li><a href="README.md">README</a></li>
-</ul>
+
+<footer>
+  &copy; 2023 Taixu Corpus Analysis Project
+</footer>
+
+<!-- Gradient overlays for fade-in effect -->
+<div class="fade-overlay fade-top"></div>
+<div class="fade-overlay fade-bottom"></div>
+
+<script>
+  // Scroll Animation
+  const sections = document.querySelectorAll('.content-section');
+  const options = {
+    threshold: 0.1
+  };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+  sections.forEach(section => {
+    section.classList.add('hidden');
+    observer.observe(section);
+  });
+</script>
 </body>
 </html>

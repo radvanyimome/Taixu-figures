@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taixu Corpus Analysis Project</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #faf0e6; /* Linen background */
+            color: #4b2e2a; /* Deep brown text */
+            margin: 0;
+            /*padding: 0;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #5a3a31; /* Dark brown for the header */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #8b4513; /* Saddle brown */
+            margin-top: 20px;
+            text-align: center;
+        }
+        p {
+            color: #4b2e2a; /* Deep brown text */
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+        }
+        li {
+            margin: 10px;
+            padding: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: #8b4513; /* Saddle brown text */
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #e0b080; /* Light brown background for links */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        a:hover {
+            background-color: #d4a76c; /* Darker brown on hover */
+            transform: scale(1.05);
+        }
+        .portrait {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .portrait img {
+            max-width: 200px;
+            border-radius: 50%;
+            border: 5px solid #d4a76c;
+        }
+        .content-section {
+            max-width: 800px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Taixu Corpus Analysis Project</h1>
+<p>Explore our analysis of the works of Buddhist monk Taixu (太虛; 1890-1947), with a focus on how he engaged with different religious and philosophical traditions.</p>
+
+<div class="portrait">
+    <img src="taixu_portrait.jpg" alt="Portrait of Taixu">
+</div>
+
+<div class="content-section">
+    <h2>Project Overview</h2>
+    <p>Our research aims to understand Taixu's approach to diverse religious and philosophical ideas, especially his treatment of Christianity within a multi-religious context. By processing over 4.88 million Chinese characters and over 169,000 sentences, we’ve structured a comprehensive analysis of his works, highlighting his cross-cultural and interfaith perspectives.</p>
+</div>
+
+<div class="content-section">
+    <h2>Key Findings: The Complete Works of Taixu</h2>
+    <p>We conducted keyword analysis on terms related to various religions, with a notable emphasis on Christianity. Through this, we discovered significant references to 'Christ,' 'Brahma,' and concepts from other religions, illustrating Taixu’s comparative exploration of faith. Additionally, our analysis revealed varied use of metadata, such as dates and locations, in sections referencing Christianity, Confucianism, and Hinduism.</p>
+</div>
+
+<ul>
+    <li><a href="christian_timeline.html">Timeline of activities related to Christianity</a></li>
+    <li><a href="christian_heatmap.html">Heatmap of activities related to Christianity</a></li>
+    <li><a href="christian_typemap.html">Map of activities related to Christianity (grouped by type of activity)</a></li>
+    <li><a href="christian_yearmap.html">Map of activities related to Christianity (colored by year)</a></li>
+    <li><a href="full_heatmap.html">Heatmap of activities (complete)</a></li>
+    <li><a href="full_typemap.html">Complete map of activities (by type)</a></li>
+    <li><a href="full_yearmap.html">Complete map of activities (by year)</a></li>
+</ul>
+
+<div class="content-section">
+    <h2>Key Findings: Taixu's Biography</h2>
+    <p>Work in progress...</p>
+</div>
+
+<ul>
+    <li><a href="bio_christian_timeline.html">Referenced Christian terms in Taixus's biography</a></li>
+</ul>
+
+
+
+<div class="content-section">
+    <h2>About This Project</h2>
+    <p>Using Python scripts and visualization tools, we created multiple data visualizations, including word clouds and heatmaps. Our resources explore the geographic, thematic, and temporal dimensions of Taixu’s thoughts, offering insights into how he synthesized traditional Chinese Buddhism with foreign ideologies.</p>
+    <p>Explore the links above for interactive maps and charts, or check out our readme for a deeper dive into our methods.</p>
+</div>
+<ul>
+    <li><a href="LICENSE">License</a></li>
+    <li><a href="README.md">README</a></li>
+</ul>
+</body>
+</html>
